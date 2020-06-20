@@ -1,0 +1,11 @@
+from django.test import TestCase, Client
+from django.urls import reverse, resolve
+
+class LoginTest(TestCase):
+    def setUp(self):
+        self.client = Client()
+        self.for_login = reverse('for_login')
+
+    def test_connect_GET(self):
+        response = self.client.get(self.for_login)
+        self.assertJSONEqual(response.content, {"你好": 'hello'})
