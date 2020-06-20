@@ -1,0 +1,16 @@
+2020-6-20
+# namespace 格式 一级url
+  url('one/', include('urls',namespace='namespace1'))
+  
+# namespace 格式 二级url
+  url('page1', views.page1, name='page1'）
+  url('two', include('urls',namespace='namespace2'))
+  
+# namespace 格式 三级url
+  url('page2', views.page2, name='page2'）
+  
+# 路由反转格式
+  url1 = reverse('namespace1:page1')
+  # url1 = one/page1
+  url2 = reverse('namespace1:namespace2:name')
+  # url2 = one/two/page2
