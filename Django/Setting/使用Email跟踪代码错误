@@ -1,0 +1,8 @@
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.yeah.net'  # smtp邮件服务器地址
+EMAIL_HOST_USER = 'xxx@yeah.net'  # smtp 邮件服务的用户名
+EMAIL_HOST_PASSWORD = 'password'  # smtp邮件服务的密码
+# 管理员站点
+SERVER_EMAIL = 'xxx@yeah.net'
+# 将请求/响应周期中引发的异常的详细信息发送邮箱配置
+ADMINS = [('admin', 'qq@qq.com'), ]
