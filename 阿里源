@@ -1,0 +1,8 @@
+cd /etc/yum.repos.d/
+yum -y install wget 可以没有
+rm -rf    /etc/yum.repos.d/*.repo
+curl -o CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-8.repo  # 注意更改 centos-7 和 8
+yum clean all
+yum makecache
+查看源
+yum repolist
