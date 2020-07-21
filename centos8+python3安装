@@ -4,6 +4,8 @@ yum -y install wget
 wget https://www.python.org/ftp/python/3.8.4/Python-3.8.4.tar.xz
 tar -xvJf Python-3.8.4.tar.xz
 
+# 注意目录错误/usr/local/python3 /usr/local/bin/python3 我的锅
+
 mkdir /usr/local/python3
 cd Python-3.8.4
  可能没有用yum -y install gcc automake autoconf libtool make
