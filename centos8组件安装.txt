@@ -1,0 +1,80 @@
+﻿******************** 终端快捷键 ********************
+
+/usr/bin/gnome-terminal
+ctrl t
+
+
+******************** python3 自定义安装 ********************
+
+yum install openssl-devel -y
+yum install zlib-devel -y
+yum -y install wget
+wget https://www.python.org/ftp/python/3.8.4/Python-3.8.4.tar.xz
+tar -xvJf Python-3.8.4.tar.xz
+
+mkdir /usr/local/python3
+cd Python-3.8.4
+yum -y install gcc automake autoconf libtool make
+yum install gcc gcc-c++
+
+./configure --prefix=/usr/local/bin/python3
+./configure --enable-optimizations
+ make && make install
+ln -s /usr/local/python3/bin/python3 /usr/bin/python3
+ln -s /usr/local/python3/bin/pip3 /usr/bin/pip # 这里我写的pip 可以用pip3
+
+
+******************** mysql 安装 ********************
+
+yum insatll mysql-server
+mysql_secure_installation
+
+
+******************** yum epel 源 ********************
+
+备份yum源
+mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup
+
+yum源
+curl -O /etc/yum.repos.d/CentOS-Base.repo http://mirrors.aliyun.com/repo/Centos-8.repo # 注意更改 centos-7 和 8
+yum clean all
+yum makecache
+
+备份epel源一些没有这些文件
+mv /etc/yum.repos.d/epel.repo /etc/yum.repos.d/epel.repo.backup
+mv /etc/yum.repos.d/epel-testing.repo /etc/yum.repos.d/epel-testing.repo.backup
+
+epel源
+yum install -y https://mirrors.aliyun.com/epel/epel-release-latest-8.noarch.rpm
+
+华为
+wget -O /etc/yum.repos.d/CentOS-Base.repo https://repo.huaweicloud.com/repository/conf/CentOS-8-reg.repo
+yum install -y https://repo.huaweicloud.com/epel/epel-release-latest-8.noarch.rpm
+
+查看源
+yum repolist
+
+
+******************** 修改用户 ********************
+修改用户名,这只会更改用户名，而其他的东西，比如用户组，家目录，UID 等都保持不变。
+语法 usermod -l new_username old_username
+
+sudo usermod -l  Content controller
+
+你需要从要改名的帐号中登出并杀掉该用户的所有进程，要杀掉该用户的所有进程可以执行下面命令，
+sudo pkill -u controller
+sudo pkill -9 -u controller.
+
+要同时更改家目录，我们需要在执行 usermod 命令的同时加上 -d 选项，
+sudo usermod -d /home/Content -m Content
+
+执行下面命令修改用户 UID，这里 2000 就是用户的新 UID。
+sudo usermod -u 2000 Content
+
+要把用户组名从 controller 修改为 Content，我们需要使用 groupmod 命令。使用下面命令来修改用户组名，
+groupmod -n Content controller
+做完修改后，可以使用 id 命令来检查，
+id Content
+
+修改主机名
+hostnamectl  set-hostname www.djl.cc
