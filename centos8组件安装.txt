@@ -78,3 +78,7 @@ id Content
 
 修改主机名
 hostnamectl  set-hostname www.djl.cc
+
+
+******************** 源码组件 ********************
+dnf install kernel-devel
